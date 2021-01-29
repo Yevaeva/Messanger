@@ -16,16 +16,15 @@ class HomePage extends React.Component {
                     <img src={logo} alt="Logo" />
                     <div className='btnWrapper'>
                         <Link to='/register'
-                            exact
+                            exact ='true'
                             className='register'>
                             <input type="submit" value="Register" />
 
                         </Link>
                         <Link to='/signin'
-                            exact
+                            exact ='true'
                             className='signin'>
                             <input type="submit" value="Sign in" />
-
                         </Link>
                     </div>
                 </main>

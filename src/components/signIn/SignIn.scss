@@ -86,7 +86,7 @@ label input::placeholder {
   color: var(--borderDark);
 }
 
-/* trick from https://css-tricks.com/snippets/css/password-input-bullet-alternatives/ */
+
 label input[name="password"] {
   -webkit-text-security: disc;
 }
