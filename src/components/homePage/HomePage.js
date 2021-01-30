@@ -1,7 +1,6 @@
 import React from 'react'
 import './HomePage.scss'
 import { Link } from 'react-router-dom'
-import SignIn from '../signIn/SignIn'
 import logo from '../images/logo.png';
 
 
@@ -21,11 +20,13 @@ class HomePage extends React.Component {
                             <input type="submit" value="Register" />
 
                         </Link>
-                        <Link to='/signin'
+                        <Link to='/sign-in'
                             exact ='true'
                             className='signin'>
                             <input type="submit" value="Sign in" />
                         </Link>
+
+
                     </div>
                 </main>
             </div>

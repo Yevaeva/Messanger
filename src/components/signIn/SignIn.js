@@ -4,7 +4,6 @@ import './SignIn.scss'
 
 
 
-
 class SignIn extends React.Component {
     constructor(props) {
         super(props);
@@ -21,49 +20,51 @@ class SignIn extends React.Component {
         })
     }
 
-    handleClick = (event) => {
+    handleSignIn = (event) => {
+        event.preventDefault()
         let r = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
         if (r.test(this.state.email)) {
-            let body = JSON.stringify({ ...this.state })
-
-            fetch('http://localhost:8080/api/login', {
+            let body =
+                {
+                    email: this.state.email,
+                    password: this.state.password
+                }
+            fetch('http://localhost:8080/user/sign-in', {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: body
+                body: JSON.stringify(body)
             })
-            .then((res) => res.json())
-            .then((response) => {
-                if (response.error) {
-                    throw response.error
-                }
-                console.log(response);
-                //if (response.data.code == 200) {
-                //             console.log("Login successfull");
-                //         }
-                //         else if (response.data.code == 204) {
-                //             console.log("Username password do not match");
-                //             alert("username password do not match")
-                //         }
-                //         else {
-                //             console.log("Username does not exists");
-                //             alert("Username does not exist");
-                //         }
-            })
-            .catch((error) => {
-                console.log(error);
-            })
+                .then((res) => res.json())
+                .then((response) => {
+                    if (response.message) {
+                        console.log(response.message, 'response.mes');
+                    }
+                    else {
+                        console.log("Login successfull");
+                        this.props.history.push('/logged')
+                    }
+                    if (response.error) {
+                        throw response.error
+                    }
+
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
 
         }
-         
+
     }
 
     render() {
         return (
             <div className='background'>
-                <form className="login-form" >
+                <form
+                    className="login-form"
+                    onSubmit={this.handleSignIn}>
                     <h1 className="a11y-hidden">Login Form</h1>
                     <div>
                         <label className="label-email">
@@ -97,10 +98,14 @@ class SignIn extends React.Component {
                             <span className="required">Password</span>
                         </label>
                     </div>
-                    <input
+                        <input
                         type="submit"
                         value="Log In"
-                        onClick={(event) => this.handleClick(event)} />
+                    />
+                    
+                             
+
+                   
                     <div className="email">
                         <a href="#">Forgot password?</a>
                     </div>
@@ -117,6 +122,7 @@ class SignIn extends React.Component {
                         <div className="shirt-2"></div>
                     </figure>
                 </form>
+                
             </div>
 
         )

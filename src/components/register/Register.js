@@ -5,34 +5,128 @@ import '../signIn/SignIn.scss'
 
 
 class Register extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            email: '',
+            password: '',
+            name: '',
+            surname: ''
+        }
+    }
+
+    handleChange = (event, type) => {
+        this.setState({
+            [type]: event.target.value,
+        })
+    }
+
+    handleSignUp = (event) => {
+        event.preventDefault()
+        let regexp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        let { email, password, name, surname } = this.state
+
+        if (regexp.test(email) && password.length > 4) {
+            let body =
+            {
+                email,
+                password,
+                name,
+                surname
+            }
+            fetch('http://localhost:8080/user/', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(body)
+            })
+                .then((res) => res.json())
+                .then((response) => {
+                    if (response.message) {
+                        console.log(response.message, '----response.mes');
+                    }
+                    else {
+
+                        console.log("Successfull registration");
+                        this.props.history.push('/logged')
+
+                    }
+                    if (response.error) {
+                        throw response.error
+                    }
+
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+
+        } else {
+            alert('password must be gt 5')
+        }
+
+    }
 
 
-    
     render() {
         return (
             <div className='background'>
- 
-                <form method="get"  id="login-form"  role="main">
+
+                <form
+                    onSubmit={this.handleSignUp} >
                     <div>
                         <label className="label-email">
-                            <input type="text"  name="Username" placeholder="Username"  required />
-                            <span className="required">Username</span>
+                            <input
+                                type="text"
+                                name="Name"
+                                placeholder="Name"
+                                required
+                                value={this.state.name}
+                                onChange={(event) => this.handleChange(event, 'name')} />
+                            <span className="required">Name</span>
                         </label>
                     </div>
                     <div>
                         <label className="label-email">
-                            <input type="email" className="text" name="email" placeholder="Email" required />
+                            <input
+                                type="text"
+                                name="Surname"
+                                placeholder="Surname"
+                                required
+                                value={this.state.surname}
+                                onChange={(event) => this.handleChange(event, 'surname')} />
+                            <span className="required">Surname</span>
+                        </label>
+                    </div>
+                    <div>
+                        <label className="label-email">
+                            <input
+                                type="email"
+                                className="text"
+                                name="email"
+                                placeholder="Email"
+                                required
+                                value={this.state.email}
+                                onChange={(event) => this.handleChange(event, 'email')} />
                             <span className="required">Email</span>
                         </label>
                     </div>
                     <input type="checkbox" name="show-password" className="show-password a11y-hidden" id="show-password"
-                     />
+                    />
                     <label className="label-show-password" htmlFor="show-password">
                         <span>Show Password</span>
                     </label>
                     <div>
                         <label className="label-password">
-                            <input type="text" className="text" name="password" placeholder="Password" required />
+                            <input
+                                type="text"
+                                className="text"
+                                name="password"
+                                placeholder="Password"
+                                required
+                                value={this.state.password}
+                                onChange={(event) => this.handleChange(event, 'password')} />
                             <span className="required">Password</span>
                         </label>
                     </div>
