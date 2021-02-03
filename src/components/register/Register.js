@@ -1,5 +1,7 @@
 import React from 'react'
 import '../signIn/SignIn.scss'
+import makeToast from "../toaster";
+
 
 
 
@@ -44,21 +46,24 @@ class Register extends React.Component {
             })
                 .then((res) => res.json())
                 .then((response) => {
-                    if (response.message) {
-                        console.log(response.message, '----response.mes');
+                    if (response.error) {
+                        throw response.error
+                    }
+                    if (response.error) {
+                        console.log(response.error.message, '----response.mes');
                     }
                     else {
 
                         console.log("Successfull registration");
-                        this.props.history.push('/logged')
+                        makeToast("success", response.message);
+                        this.props.history.push('/dashboard')
 
                     }
-                    if (response.error) {
-                        throw response.error
-                    }
+                   
 
                 })
                 .catch((error) => {
+                    // makeToast("error", error.response.message);
                     console.log(error);
                 })
 

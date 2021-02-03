@@ -1,5 +1,8 @@
 import React from 'react'
 import './SignIn.scss'
+import makeToast from "../toaster";
+
+
 
 
 
@@ -39,20 +42,29 @@ class SignIn extends React.Component {
             })
                 .then((res) => res.json())
                 .then((response) => {
-                    if (response.message) {
-                        console.log(response.message, 'response.mes');
+
+                    if(response.error){
+                        throw Error()
                     }
-                    else {
+                    else{
+                        if (!response.token) {
+                          return  makeToast("error", response.message);
+    
+                        }
+                        
+                         makeToast("success", response.message);
+                         localStorage.setItem("CC_Token", response.token);
                         console.log("Login successfull");
-                        this.props.history.push('/logged')
-                    }
-                    if (response.error) {
-                        throw response.error
+                        this.props.history.push('/dashboard')
+                        console.log(response.message, 'response.mes');
+    
+                    
                     }
 
                 })
                 .catch((error) => {
                     console.log(error);
+                    // makeToast("error", error.response.message);
                 })
 
         }

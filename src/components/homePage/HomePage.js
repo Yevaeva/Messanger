@@ -5,10 +5,19 @@ import logo from '../images/logo.png';
 
 
 
-class HomePage extends React.Component {
+const HomePage = (props) => {
+    // React.useEffect(() => {
+    //   const token = localStorage.getItem("CC_Token");
+    //   console.log(token);
+    //   if (!token) {
+    //     props.history.push("/");
+    //   } else {
+    //     props.history.push("/dashboard");
+    //   }
+    //   // eslint-disable-next-line
+    // }, [0]);
 
-
-    render() {
+    
         return (
             <div className='background'>
                 <main>
@@ -31,7 +40,7 @@ class HomePage extends React.Component {
                 </main>
             </div>
         )
-    }
+    
 
 }
 

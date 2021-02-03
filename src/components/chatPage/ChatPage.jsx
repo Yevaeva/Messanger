@@ -1,17 +1,17 @@
 import React from 'react'
+import './ChatPage.css'
+import io from 'socket.io-client'
 
 
-class ChatPage extends React.Component {
+const ChatroomPage = ({ match }) => {
+  const chatroomId = match.params.id;
+  const socket = io("http://localhost:8000", {
+    query: {
+      token: localStorage.getItem("CC_Token"),
+    },
+  });
 
+  return <div>Chatroom Page</div>;
+};
 
-    render() {
-        return (
-            <div className='background'>
-                ChatPage
-            </div>
-        )
-    }
-
-}
-
-export default ChatPage
+export default ChatroomPage;
