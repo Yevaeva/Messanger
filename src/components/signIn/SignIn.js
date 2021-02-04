@@ -7,13 +7,15 @@ import makeToast from "../toaster";
 
 
 
+
 class SignIn extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            
         }
     }
 
@@ -53,9 +55,11 @@ class SignIn extends React.Component {
                         }
                         
                          makeToast("success", response.message);
-                         localStorage.setItem("CC_Token", response.token);
+
+        
                         console.log("Login successfull");
-                        this.props.history.push('/dashboard')
+                        this.props.history.push('/home')
+                       
                         console.log(response.message, 'response.mes');
     
                     

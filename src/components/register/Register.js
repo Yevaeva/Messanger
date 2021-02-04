@@ -56,7 +56,7 @@ class Register extends React.Component {
 
                         console.log("Successfull registration");
                         makeToast("success", response.message);
-                        this.props.history.push('/dashboard')
+                        this.props.history.push('/home')
 
                     }
                    
