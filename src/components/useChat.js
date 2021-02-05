@@ -9,20 +9,27 @@ const START_TYPING_MESSAGE_EVENT = "START_TYPING_MESSAGE_EVENT";
 const STOP_TYPING_MESSAGE_EVENT = "STOP_TYPING_MESSAGE_EVENT";
 const SOCKET_SERVER_URL = "http://localhost:8080";
 
-const useChat = (roomId) => {
+const useChat = (roomId, email) => {
   const [messages, setMessages] = useState([]);
   const [users, setUsers] = useState([]);
   const [typingUsers, setTypingUsers] = useState([]);
   const [user, setUser] = useState();
   const socketRef = useRef();
 
+  
+
   useEffect(() => {
     const fetchUser = async () => {
-      const response = await axios.get("https://api.randomuser.me/");
-      const result = response.data.results[0];
+      // const response = await axios.get("https://api.randomuser.me/");
+      const response = await axios.get(`${SOCKET_SERVER_URL}/user/:${email}`);
+      // const result = response.data.results[0];
+      const result = response.data
+      console.log(result);
       setUser({
-        name: result.name.first,
-        picture: result.picture.thumbnail,
+        picture: result.picture,
+        name: result.name
+        // name: result.name.first,
+        // picture: result.picture.thumbnail,
       });
     };
 
@@ -66,6 +73,9 @@ const useChat = (roomId) => {
     });
 
     socketRef.current.on(USER_JOIN_CHAT_EVENT, (user) => {
+      console.log('user',user);
+      console.log('socketRef.current',socketRef.current);
+
       if (user.id === socketRef.current.id) return;
       setUsers((users) => [...users, user]);
     });
@@ -75,11 +85,14 @@ const useChat = (roomId) => {
     });
 
     socketRef.current.on(NEW_CHAT_MESSAGE_EVENT, (message) => {
+      console.log('message',message);
       const incomingMessage = {
         ...message,
         ownedByCurrentUser: message.senderId === socketRef.current.id,
       };
+      console.log(incomingMessage,'incomingMessage');
       setMessages((messages) => [...messages, incomingMessage]);
+      console.log('messages',messages);
     });
 
     socketRef.current.on(START_TYPING_MESSAGE_EVENT, (typingInfo) => {

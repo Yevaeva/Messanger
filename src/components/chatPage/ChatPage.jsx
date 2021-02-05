@@ -10,7 +10,7 @@ import Users from "../Users/Users";
 import UserAvatar from "../UserAvatar/UserAvatar";
 
 const ChatRoom = (props) => {
-  const { roomId } = props.match.params;
+  const { roomId, email } = props.match.params;
   const {
     messages,
     user,
@@ -19,7 +19,7 @@ const ChatRoom = (props) => {
     sendMessage,
     startTypingMessage,
     stopTypingMessage,
-  } = useChat(roomId);
+  } = useChat(roomId, email);
   const [newMessage, setNewMessage] = useState("");
 
   const { isTyping, startTyping, stopTyping, cancelTyping } = useTyping();

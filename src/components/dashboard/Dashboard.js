@@ -7,9 +7,9 @@ const DashboardPage = (props) => {
     const [chatrooms, setChatrooms] = React.useState([]);
     const getChatrooms = () => {
       axios
-        .get("http://localhost:8080/logged", {
+        .get("http://localhost:8080/chatroom", {
           headers: {
-            Authorization: "Bearer " + localStorage.getItem("CC_Token"),
+            Authorization: "Bearer " + localStorage.getItem("token"),
           },
         })
         .then((response) => {

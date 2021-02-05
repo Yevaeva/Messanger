@@ -1,6 +1,8 @@
 import React from 'react'
 import './SignIn.scss'
 import makeToast from "../toaster";
+import useChat from "../useChat";
+import Home from '../Home/Home';
 
 
 
@@ -15,7 +17,8 @@ class SignIn extends React.Component {
         this.state = {
             email: '',
             password: '',
-            
+            emailQuery:'',
+            bool:true
         }
     }
 
@@ -55,10 +58,14 @@ class SignIn extends React.Component {
                         }
                         
                          makeToast("success", response.message);
-
-        
+                        localStorage.setItem('token', response.token)
+                        this.setState({
+                            emailQuery:body.email,
+                            bool:false
+                        })
                         console.log("Login successfull");
-                        this.props.history.push('/home')
+                        // this.props.history.push('/home')
+                        
                        
                         console.log(response.message, 'response.mes');
     
@@ -77,7 +84,10 @@ class SignIn extends React.Component {
 
     render() {
         return (
-            <div className='background'>
+            <>
+            {this.state.bool?(
+                <div className='background'>
+                
                 <form
                     className="login-form"
                     onSubmit={this.handleSignIn}>
@@ -140,6 +150,11 @@ class SignIn extends React.Component {
                 </form>
                 
             </div>
+            ):
+            <Home emailQuery={this.state.emailQuery} />
+        }
+            </>
+            
 
         )
     }
