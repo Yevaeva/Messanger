@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 
-import onlineIcon from '../../icons/onlineIcon.png';
+import onlineIcon from "../../icons/onlineIcon.png";
 
-import './TextContainer.css';
+import "./TextContainer.css";
 
 export const TextContainer = ({ users }) => (
-  <div className='textContainer'>
+  <div className="textContainer">
     <div>
       <h1>
         Live Chat
@@ -25,12 +25,12 @@ export const TextContainer = ({ users }) => (
     {users ? (
       <div>
         <h1>Users chatting</h1>
-        <div className='activeContainer'>
+        <div className="activeContainer">
           <h2>
             {users.map(({ name }) => (
-              <div key={name} className='activeItem'>
+              <div key={name} className="activeItem">
                 {name}
-                <img alt='Online Icon' src={onlineIcon} />
+                <img alt="Online Icon" src={onlineIcon} />
               </div>
             ))}
           </h2>

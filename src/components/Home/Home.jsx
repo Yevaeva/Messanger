@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Link , Redirect} from "react-router-dom";
-import axios from 'axios'
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 import "./Home.css";
 
@@ -18,7 +18,6 @@ const Home = (props) => {
       .then((response) => {
         setChatrooms(response.data);
         console.log(response.data);
-        
       })
       .catch((err) => {
         console.log(err);
@@ -29,13 +28,10 @@ const Home = (props) => {
     getChatrooms();
     // eslint-disable-next-line
   }, []);
- 
-  
 
   const handleRoomNameChange = (event) => {
     setRoomName(event.target.value);
   };
-
 
   return (
     <div className="home-container">
@@ -46,7 +42,10 @@ const Home = (props) => {
         onChange={handleRoomNameChange}
         className="text-input-field"
       />
-      <Link to={`/home/${roomName}/${props.emailQuery}`} className="enter-room-button">
+      <Link
+        to={`/home/${roomName}/${props.emailQuery}`}
+        className="enter-room-button"
+      >
         Join room
       </Link>
     </div>

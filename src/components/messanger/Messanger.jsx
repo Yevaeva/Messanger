@@ -1,23 +1,15 @@
-import React from 'react'
-
+import React from "react";
 
 class Messanger extends React.Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.state = {
-    
-        }
-    }
+    this.state = {};
+  }
 
-    render() {
-        return (
-            <div className='background'>
-               
-            </div>
-        )
-    }
-
+  render() {
+    return <div className="background"></div>;
+  }
 }
 
-export default Messanger
+export default Messanger;
