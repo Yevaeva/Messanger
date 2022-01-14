@@ -1,7 +1,6 @@
 import React from "react";
 import "./SignIn.scss";
 import makeToast from "../toaster";
-import useChat from "../useChat";
 import Home from "../Home/Home";
 
 class SignIn extends React.Component {

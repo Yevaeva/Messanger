@@ -38,7 +38,7 @@ const ChatRoom = (props) => {
   useEffect(() => {
     if (isTyping) startTypingMessage();
     else stopTypingMessage();
-  }, [isTyping]);
+  }, [isTyping, startTypingMessage, stopTypingMessage]);
 
   return (
     <div className="chat-room-container">
