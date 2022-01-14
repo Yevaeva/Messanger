@@ -1,5 +1,3 @@
-
-
 form {
   --background: white;
   --border: rgba(0, 0, 0, 0.125);
@@ -27,7 +25,8 @@ form {
   overflow: hidden;
 }
 
-form .email, form .email a {
+form .email,
+form .email a {
   color: hsl(var(--fgColorH), var(--fgColorS), var(--fgColorL));
   font-size: 0.825rem;
   order: 4;
@@ -45,7 +44,12 @@ form a:hover {
 
 form a:focus {
   color: hsl(var(--fgColorH), var(--fgColorS), calc(var(--fgColorL) * 0.85));
-  outline: 1px dashed hsl(var(--fgColorH), calc(var(--fgColorS) * 2), calc(var(--fgColorL) * 1.15));
+  outline: 1px dashed
+    hsl(
+      var(--fgColorH),
+      calc(var(--fgColorS) * 2),
+      calc(var(--fgColorL) * 1.15)
+    );
   outline-offset: 2px;
 }
 
@@ -86,7 +90,6 @@ label input::placeholder {
   color: var(--borderDark);
 }
 
-
 label input[name="password"] {
   -webkit-text-security: disc;
 }
@@ -106,16 +109,29 @@ label:hover input.text {
 
 label input.text:focus,
 label input.text:active {
-  border-color:  hsl(var(--fgColorH), calc(var(--fgColorS) * 2), calc(var(--fgColorL) * 1.15));
-  box-shadow: 0 1px  hsl(var(--fgColorH), calc(var(--fgColorS) * 2), calc(var(--fgColorL) * 1.15));
+  border-color: hsl(
+    var(--fgColorH),
+    calc(var(--fgColorS) * 2),
+    calc(var(--fgColorL) * 1.15)
+  );
+  box-shadow: 0 1px
+    hsl(
+      var(--fgColorH),
+      calc(var(--fgColorS) * 2),
+      calc(var(--fgColorL) * 1.15)
+    );
 }
 
 input.text:focus + span,
 input.text:active + span {
-  color:  hsl(var(--fgColorH), calc(var(--fgColorS) * 2), calc(var(--fgColorL) * 1.15));
+  color: hsl(
+    var(--fgColorH),
+    calc(var(--fgColorS) * 2),
+    calc(var(--fgColorL) * 1.15)
+  );
 }
 
- form input {
+form input {
   border: 1px solid var(--border);
   border-radius: var(--borderRadius);
   box-sizing: border-box;
@@ -144,20 +160,37 @@ input[type="submit"] {
 
 input[type="checkbox"]:focus + label span::before,
 input[type="submit"]:focus {
-  outline: 1px dashed hsl(var(--fgColorH), calc(var(--fgColorS) * 2), calc(var(--fgColorL) * 1.15));
+  outline: 1px dashed
+    hsl(
+      var(--fgColorH),
+      calc(var(--fgColorS) * 2),
+      calc(var(--fgColorL) * 1.15)
+    );
   outline-offset: 2px;
 }
 
 input[type="submit"]:focus {
-  background: hsl(var(--fgColorH), var(--fgColorS), calc(var(--fgColorL) * 0.85));
+  background: hsl(
+    var(--fgColorH),
+    var(--fgColorS),
+    calc(var(--fgColorL) * 0.85)
+  );
 }
 
 input[type="submit"]:hover {
-  background: hsl(var(--fgColorH), var(--fgColorS), calc(var(--fgColorL) * 0.85));
+  background: hsl(
+    var(--fgColorH),
+    var(--fgColorS),
+    calc(var(--fgColorL) * 0.85)
+  );
 }
 
 input[type="submit"]:active {
-  background: hsl(var(--fgColorH), calc(var(--fgColorS) * 2), calc(var(--fgColorL) * 1.15));
+  background: hsl(
+    var(--fgColorH),
+    calc(var(--fgColorS) * 2),
+    calc(var(--fgColorL) * 1.15)
+  );
   transition: all 0.125s;
 }
 
@@ -184,7 +217,7 @@ input[type="checkbox"] + label span::before {
   border: 1px solid var(--borderDark);
   border-radius: var(--borderRadius);
   transition: all 0.25s;
-  outline:1px dashed transparent;
+  outline: 1px dashed transparent;
   outline-offset: 2px;
 }
 
@@ -199,7 +232,7 @@ input[type="checkbox"]:checked + label span::after {
   border: 1px solid var(--borderDark);
   border-radius: var(--borderRadius);
   transition: all 0.25s;
-  outline:1px dashed transparent;
+  outline: 1px dashed transparent;
   outline-offset: 2px;
   background: hsl(var(--fgColorH), var(--fgColorS), var(--fgColorL));
 }
@@ -209,9 +242,9 @@ figure {
   --skinH: 30;
   --skinS: 100%;
   --skinL: 87%;
-  --hair: rgb(180,70,60);
+  --hair: rgb(180, 70, 60);
   background: hsl(var(--fgColorH), calc(var(--fgColorS) * 2), 95%);
-  border: 1px solid rgba(0,0,0,0.0625);
+  border: 1px solid rgba(0, 0, 0, 0.0625);
   border-radius: 50%;
   height: 0;
   margin: auto auto;
@@ -230,7 +263,8 @@ figure div {
 
 figure .skin {
   background: hsl(var(--skinH), var(--skinS), var(--skinL));
-  box-shadow: inset 0 0 3rem hsl(var(--skinH), var(--skinS), calc(var(--skinL) * 0.95));
+  box-shadow: inset 0 0 3rem
+    hsl(var(--skinH), var(--skinS), calc(var(--skinL) * 0.95));
 }
 
 figure .head {
@@ -242,7 +276,7 @@ figure .head {
   box-shadow: 0 -0.175rem 0 0.125rem var(--hair);
 }
 
-figure  .ears {
+figure .ears {
   top: 47%;
   left: 50%;
   white-space: nowrap;
@@ -266,7 +300,9 @@ figure .head .eyes {
 }
 
 @-webkit-keyframes blink {
-  0%, 90%, 100% {
+  0%,
+  90%,
+  100% {
     height: 10px;
   }
   95% {
@@ -275,7 +311,9 @@ figure .head .eyes {
 }
 
 @keyframes blink {
-  0%, 90%, 100% {
+  0%,
+  90%,
+  100% {
     height: 10px;
   }
   95% {
@@ -308,7 +346,7 @@ figure .head .mouth {
   border-bottom: 0.125rem solid var(--borderDarker);
   width: 25%;
   border-radius: 50%;
-  transition: all 0.5s
+  transition: all 0.5s;
 }
 
 form:invalid figure .head .mouth {
@@ -373,10 +411,10 @@ figure .shirt-2 {
   background: hsl(var(--bgColorH), var(--bgColorS), var(--bgColorL));
   top: 76%;
   left: 36.5%;
-  transform: skew(-10deg) rotate(15deg)
+  transform: skew(-10deg) rotate(15deg);
 }
 
 figure .shirt-2 {
   left: 52.5%;
-  transform: skew(10deg) rotate(-15deg)
+  transform: skew(10deg) rotate(-15deg);
 }
